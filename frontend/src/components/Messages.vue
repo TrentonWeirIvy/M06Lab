@@ -14,6 +14,8 @@
         </v-list>
         
     </div>
+
+    <button>Post</button>
   </template>
   
   <script>
@@ -30,7 +32,8 @@
     },
     async created(){
         this.messages = (await axios.get('http://localhost:3000/messages')).data;
-    }
+    },
+    
   }
   </script>
   
