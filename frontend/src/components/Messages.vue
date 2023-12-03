@@ -1,39 +1,42 @@
 <template>
-    <div>
-        <h1 class="display-1">Messages {{ msg }}</h1>
-    
-        <v-list>
-            <v-list-tile
-                v-for="message in messages"
-                :key="message"
-                >
-            <v-list-tile-content>
-                <v-list-tile-title class="display-1" v-text="message"/>
-            </v-list-tile-content>
-        </v-list-tile>
-        </v-list>
-        
-    </div>
+  <div>
+    <v-container fluid>
+      <v-row justify="center">
+        <v-col cols="12" sm="8" md="6">
+          <v-card>
+            <v-card-title class="headline" style="background-color: black; color:white;">
+              Messages {{ msg }}
+            </v-card-title>
+            <v-list>
+              <v-list-item v-for="message in this.$store.state.msgs" :key="message">
+                <v-list-item-content>
+                  <v-list-item-title class="display-1" v-text="message" />
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
+</template>
 
-    <button>Post</button>
-  </template>
-  
-  <script>
-  import axios from 'axios';
-  export default {
-    name: 'MessagesMsg',
-    props: {
-      msg: String
+<script>
+
+
+export default {
+  name: 'MessagesMsg',
+  props: {
+    msg: String
+  },
+  computed: {
+    msgs() {
+      return this.$store.state.msgs;
     },
-    data() {
-      return {
-        messages: ["Message1", "Message2"]
-      };
-    },
-    async created(){
-        this.messages = (await axios.get('http://localhost:3000/messages')).data;
-    },
-    
-  }
-  </script>
-  
+  },
+  async created() {
+    this.$store.dispatch('getMessages');
+  },
+};
+
+</script>

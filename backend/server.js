@@ -7,7 +7,7 @@ const port = 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
-var messages = Array.from({ length: 10 }, (_, index) => {
+var messages = Array.from({ length: 4 }, (_, index) => {
     return "Message" + index;
 });
 
@@ -21,7 +21,7 @@ app.post('/messages', (req, res) => {
     console.log(msg);
     messages.push(msg.message);
 
-    res.json(messages);
+    res.json(msg);
 });
 
 app.listen(
