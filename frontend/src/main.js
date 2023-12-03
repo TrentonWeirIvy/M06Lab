@@ -7,7 +7,8 @@ import store from './store'; // Import your Vuex store
 import { createRouter, createWebHistory } from 'vue-router'; // Import necessary router functions
 
 import Messages from './components/Messages';
-import NewMessage from './components/NewMessage'
+import NewMessage from './components/NewMessage';
+import MessageItem from './components/Message';
 
 'use strict';
 
@@ -19,6 +20,10 @@ const routes = [
   {
     path: '/newMessage',
     component: NewMessage,
+  },
+  {
+    path: '/messageItem/:id',
+    component: MessageItem,
   },
 ];
 

@@ -8,7 +8,7 @@
               Messages {{ msg }}
             </v-card-title>
             <v-list>
-              <v-list-item v-for="message in this.$store.state.msgs" :key="message">
+              <v-list-item v-for="(message, index) in this.$store.state.msgs" :key="index" :to="'messageitem/'+index">
                 <v-list-item-content>
                   <v-list-item-title class="display-1" v-text="message" />
                 </v-list-item-content>
